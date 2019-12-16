@@ -40,47 +40,65 @@ class AddBook : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         activity!!.home_page_search_bar.visibility = View.GONE
-        val catStrings=arrayOf("التاريخ","الأدب","علوم الحاسوب","الأبحاث العلمية")
-        add_category.adapter=ArrayAdapter(activity!!,android.R.layout.simple_spinner_dropdown_item,catStrings)
-        add_category.onItemSelectedListener=object : AdapterView.OnItemSelectedListener{
+        val catStrings = arrayOf("التاريخ", "الأدب", "علوم الحاسوب", "الأبحاث العلمية")
+        add_category.adapter =
+            ArrayAdapter(activity!!, android.R.layout.simple_spinner_dropdown_item, catStrings)
+        add_category.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //To change body of created functions use File | Settings | File Templates.
             }
-            override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
 //                add_book_btn.text=catStrings[position]
-                if (catStrings[position]=="التاريخ")
-                    cat="1"
-                if (catStrings[position]=="الأدب")
-                    cat="2"
-                if (catStrings[position]=="علوم الحاسوب")
-                    cat="3"
-                if (catStrings[position]=="الأبحاث العلمية")
-                    cat="4"
+                if (catStrings[position] == "التاريخ")
+                    cat = "1"
+                if (catStrings[position] == "الأدب")
+                    cat = "2"
+                if (catStrings[position] == "علوم الحاسوب")
+                    cat = "3"
+                if (catStrings[position] == "الأبحاث العلمية")
+                    cat = "4"
             }
         }
 
-        val libStrings=arrayOf("المكتبة الهاشمية - ال البيت","مكتبة الجامعة الأردنية","مكتبة الجامعة اليرموك")
-        add_library.adapter=ArrayAdapter(activity!!,android.R.layout.simple_spinner_dropdown_item,libStrings)
-        add_library.onItemSelectedListener=object : AdapterView.OnItemSelectedListener{
+        val libStrings = arrayOf(
+            "المكتبة الهاشمية - ال البيت",
+            "مكتبة الجامعة الأردنية",
+            "مكتبة الجامعة اليرموك"
+        )
+        add_library.adapter =
+            ArrayAdapter(activity!!, android.R.layout.simple_spinner_dropdown_item, libStrings)
+        add_library.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //To change body of created functions use File | Settings | File Templates.
             }
-            override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
 //                add_book_btn.text=libStrings[position]
-                if (libStrings[position]=="المكتبة الهاشمية - ال البيت")
-                    lib="1"
-                if (libStrings[position]=="مكتبة الجامعة الأردنية")
-                    lib="2"
-                if (libStrings[position]=="مكتبة الجامعة اليرموك")
-                    lib="3"
+                if (libStrings[position] == "المكتبة الهاشمية - ال البيت")
+                    lib = "1"
+                if (libStrings[position] == "مكتبة الجامعة الأردنية")
+                    lib = "2"
+                if (libStrings[position] == "مكتبة الجامعة اليرموك")
+                    lib = "3"
             }
         }
 
-        add_book_pb.visibility=View.GONE
+        add_book_pb.visibility = View.GONE
         add_book_image_btn.setOnClickListener { startGallery() }
 
         add_book_btn.setOnClickListener {
-            add_book_pb.visibility=View.VISIBLE
+            add_book_pb.visibility = View.VISIBLE
             addBook()
         }
     }
@@ -136,7 +154,8 @@ class AddBook : Fragment() {
                         status = jsonInner.get("status")
                     }
                     if (status == "ok") {
-                        Snackbar.make(view!!, "تم", Snackbar.LENGTH_LONG).setAction("UNDO", null).show()
+                        Snackbar.make(view!!, "تم", Snackbar.LENGTH_LONG).setAction("UNDO", null)
+                            .show()
                         remove()
                         add_book_pb.visibility = View.GONE
                     } else {
@@ -158,7 +177,9 @@ class AddBook : Fragment() {
             override fun getParams(): Map<String, String> {
                 //Creating HashMap
                 val params = HashMap<String, String>()
-                params["book_image"] = encodImgb
+                if (encodImgb.trim().isNotEmpty()) {
+                    params["book_image"] = encodImgb
+                }
                 params["book_name"] = add_book_name?.text.toString()
                 params["book_author"] = add_book_author?.text.toString()
                 params["book_description"] = add_book_desc?.text.toString()
@@ -178,7 +199,8 @@ class AddBook : Fragment() {
         queue.add(postRequest)
         postRequest.setShouldCache(false)
     }
-    private fun remove(){
+
+    private fun remove() {
         add_book_name?.text?.clear()
         add_book_author?.text?.clear()
         add_book_desc?.text?.clear()

@@ -68,8 +68,7 @@ class BookPage : Fragment() {
 //                    dialogBox("جميع نسخ الكتاب معارة")
 //                }else
                 getBookStatus()
-            }
-            else dialogBox("لا يمكنك الإستعارة بدون رقم جامعي , \nعدل الرقم الجامعي من الصفحة الشخصية")
+            } else dialogBox("لا يمكنك الإستعارة بدون رقم جامعي , \nعدل الرقم الجامعي من الصفحة الشخصية")
         }
 
 
@@ -211,10 +210,10 @@ class BookPage : Fragment() {
                     }
                     if (status == "ok") {
 
-                        if (book_image!="null")
-                        Picasso.get()
-                            .load("https://library123456.000webhostapp.com/BookImage/$book_image")
-                            .into(book_image_book_page)
+                        if (book_image != "null")
+                            Picasso.get()
+                                .load("https://library123456.000webhostapp.com/BookImage/$book_image")
+                                .into(book_image_book_page)
 
                         book_name_book_page.text = book_name
                         author_name_book_page.text = book_author
@@ -230,10 +229,9 @@ class BookPage : Fragment() {
                         editor.putString("book_status", book_status)
                         editor.commit()
 
-                        if (book_status.toInt()==0){
-                            book_status_book_page.text="الكتاب معار"
-                            }
-                        else book_status_book_page.text= "عدد النسخ المتوفرة : $book_status"
+                        if (book_status.toInt() == 0) {
+                            book_status_book_page.text = "الكتاب معار"
+                        } else book_status_book_page.text = "عدد النسخ المتوفرة : $book_status"
 
                         pdf.setOnClickListener {
                             val url = "$book_name pdf"
@@ -511,8 +509,7 @@ class BookPage : Fragment() {
 
                             if (book_status.toString() == "0") {
                                 dialogBox("جميع نسخ الكتاب معارة")
-                            }
-                            else addBorrowed()
+                            } else addBorrowed()
 
                         } catch (e: Exception) {
                             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
@@ -715,9 +712,9 @@ class BookCommentAdapter(
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         p0.user_name_comment.text = user_name[p1]
         p0.text_comment.text = comment_text[p1]
-        if (user_image[p1]!="null")
-        Picasso.get().load("https://library123456.000webhostapp.com/images/${user_image[p1]}")
-            .into(p0.comment_profile_photo)
+        if (user_image[p1] != "null")
+            Picasso.get().load("https://library123456.000webhostapp.com/images/${user_image[p1]}")
+                .into(p0.comment_profile_photo)
 
         p0.comment_more.setOnClickListener {
             val popupMenu = PopupMenu(context, p0.comment_more)
@@ -841,8 +838,10 @@ class SuggestionsAdapter(
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         p0.book_name_book_look.text = bookName[p1]
-//        if(bookImg[p1]!=="null")
-        Picasso.get().load(utitlities.book_image_url + bookImg[p1]).into(p0.book_image_book_look)
+        if (bookImg[p1].isNotBlank()) {
+            Picasso.get().load(utitlities.book_image_url + bookImg[p1])
+                .into(p0.book_image_book_look)
+        }
         p0.book_layout.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("bookId", bookId[p1])
