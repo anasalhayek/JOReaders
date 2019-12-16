@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
@@ -21,11 +20,10 @@ import com.android.volley.toolbox.Volley
 import com.example.prototype2_0.HomeActivity
 import com.example.prototype2_0.R
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.edit_profile.*
-import kotlinx.android.synthetic.main.nav_header_home.*
-import kotlinx.android.synthetic.main.profile_layout.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
@@ -44,11 +42,42 @@ class EditProfile : Fragment() {
         super.onActivityCreated(savedInstanceState)
         (activity as HomeActivity).home_page_search_bar.visibility = View.GONE
 
+        loadInfo()
+
         change_photo.setOnClickListener { startGallery() }
 
         save_btn.setOnClickListener {
             checkInfo()
+        }
+    }
 
+    private fun loadInfo() {
+        val sharedPreference = activity!!.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val user_id = sharedPreference.getString("user_id", "")
+        val userName = sharedPreference.getString("user_name", "")
+        val userImage = sharedPreference.getString("user_image", "")
+        val decodedImage = sharedPreference.getString("user_image", "")
+        val userImageUrl = sharedPreference.getString("user_image_url", "")
+        val userUn = sharedPreference.getString("user_un", "")
+        val userPass = sharedPreference.getString("user_pass", "")
+
+        activity?.runOnUiThread {
+            replaceText(user_name_edit_page, userName)
+            replaceText(unnum_edit_page, userUn)
+            replaceText(pass_edit_page, userPass)
+            replaceText(confirm_pass_edit_page, userPass)
+            if (userImageUrl?.isNotEmpty()!!) {
+                val img = manageImageFromUri(Uri.parse(userImageUrl))
+                Picasso.get().load("https://library123456.000webhostapp.com/images/${img}")
+                    .into(change_profile_photo)
+            }
+        }
+    }
+
+    private fun replaceText(editText: TextInputEditText, value: String?) {
+        editText.text?.apply {
+            clear()
+            append(value)
         }
     }
 
@@ -75,8 +104,13 @@ class EditProfile : Fragment() {
         super.onActivityResult(requestCode, resultCode, i)
 
         if (resultCode == Activity.RESULT_OK) {
+            val sharedPreference = activity!!.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
             val uri: Uri? = i!!.data
             change_profile_photo.setImageURI(uri)
+            sharedPreference.edit().apply {
+                putString("user_image_uri", uri.toString())
+                apply()
+            }
             manageImageFromUri(i.data!!)
 
         } else {
@@ -116,7 +150,6 @@ class EditProfile : Fragment() {
                     if (status == "ok") {
 
                         Snackbar.make(view!!, "تم", Snackbar.LENGTH_LONG).show()
-                        remove()
                     } else {
                         Snackbar.make(view!!, "لم يتم التسجيل !", Snackbar.LENGTH_LONG)
                             .setAction("UNDO", null).show()
@@ -180,6 +213,7 @@ class EditProfile : Fragment() {
                 }
                 editor.putString("decoded_image", userImage)
                 editor.apply()
+                loadInfo()
                 return params
             }
         }
@@ -190,12 +224,5 @@ class EditProfile : Fragment() {
             )
         postRequest.setShouldCache(false)
         queue.add(postRequest)
-    }
-
-    private fun remove() {
-        user_name_edit_page?.text?.clear()
-        unnum_edit_page?.text?.clear()
-        pass_edit_page?.text?.clear()
-        confirm_pass_edit_page?.text?.clear()
     }
 }

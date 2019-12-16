@@ -132,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="كلمة المرور الجديدة"
-                />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -144,12 +144,13 @@
             android:gravity="center"
             boxBackgroundColor="#54000000"
             >
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/confirm_pass_edit_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="تأكيد كلمة المرور"
-                />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
         <View
             android:layout_marginTop="10dp"
