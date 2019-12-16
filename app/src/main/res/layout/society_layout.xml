@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swiperefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/soc"
+            style="@style/Header2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="المجتمع" />
+
+        <View
+            android:id="@+id/socv"
+            android:layout_width="200dp"
+            android:layout_height="2dp"
+            android:layout_below="@+id/soc"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="#c0c0c0" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/post_list_home_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/socv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <ProgressBar
+            android:id="@+id/posts_pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/socv"
+            android:layout_centerHorizontal="true" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            app:backgroundTint="@android:color/tab_indicator_text"
+            app:maxImageSize="30dp"
+            app:srcCompat="@drawable/ic_add" />
+
+    </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

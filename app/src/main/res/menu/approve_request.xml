@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/approve_item"
+        android:fontFamily="@font/arabtype"
+        android:title="موافقة" />
+    <item
+        android:id="@+id/decline_item"
+        android:fontFamily="@font/arabtype"
+        android:title="رفض" />
+</menu>

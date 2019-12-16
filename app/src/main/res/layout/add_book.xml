@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    >
+    <TextView
+        style="@style/Header2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="إضافة كتاب" />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:background="#c0c0c0" />
+
+    <ImageView
+        android:id="@+id/book_image_add_book_page"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_library_books" />
+    <TextView
+        android:id="@+id/add_book_image_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="إختيار صورة"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="18sp" />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:background="#c0c0c0" />
+    <EditText
+        android:id="@+id/add_book_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="إسم الكتاب"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:gravity="center"
+        />
+    <EditText
+        android:id="@+id/add_book_author"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="مؤلف الكتاب"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:gravity="center"
+        />
+    <EditText
+        android:id="@+id/add_book_status"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="حدد نسخ الكتاب"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:inputType="number"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:gravity="center"
+        />
+    <EditText
+        android:id="@+id/add_book_desc"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="وصف الكتاب"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="إختر الصنف"
+        android:gravity="center"/>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_category"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="إختر الصنف"
+        android:gravity="center"/>
+    <Spinner
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/add_library"
+    android:layout_marginBottom="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_gravity="center"
+    />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:background="#c0c0c0" />
+    <ProgressBar
+        android:id="@+id/add_book_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+    <TextView
+        android:id="@+id/add_book_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="35dp"
+        android:gravity="center"
+        android:text="إضافة"
+        android:padding="5dp"
+        android:textAppearance="@style/ButtTextAppearance"
+        android:background="@drawable/register_butt"
+        android:textAllCaps="true"
+        />
+</LinearLayout>
+</ScrollView>

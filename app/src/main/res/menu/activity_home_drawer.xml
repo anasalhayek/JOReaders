@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_posts"
+            android:icon="@drawable/ic_people"
+            android:title="المجتمع" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="الصفحة الشخصية"
+            android:fontFamily="@font/arabtype"
+            />
+        <item
+            android:title="فهرس المكتبات"
+            android:fontFamily="@font/arabtype"
+            >
+            <menu>
+                <item
+                    android:id="@+id/nav_catalogue_aabu"
+                    android:icon="@drawable/ic_home"
+                    android:title="المكتبة الهاشمية - ال البيت"
+                    android:fontFamily="@font/arabtype"
+                    />
+                <item
+                    android:id="@+id/nav_catalogue_ju"
+                    android:icon="@drawable/ic_home"
+                    android:title="مكتبة الجامعة - الأردنية"
+                    android:fontFamily="@font/arabtype"
+                    />
+                <item
+                    android:id="@+id/nav_catalogue_yu"
+                    android:icon="@drawable/ic_home"
+                    android:title="مكتبة الجامعة - اليرموك"
+                    android:fontFamily="@font/arabtype"
+                    />
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/librarian"
+            android:title="أمين المكتبة"
+            android:visible="false"
+            android:fontFamily="@font/arabtype"
+            >
+            <menu>
+                <item
+                    android:id="@+id/nav_add_book"
+                    android:icon="@drawable/ic_library_add"
+                    android:title="إضافة كتاب"
+                    android:fontFamily="@font/arabtype"
+                    />
+                <item
+                    android:id="@+id/nav_borrow"
+                    android:icon="@drawable/ic_borrow_requests"
+                    android:title="طلبات الإستعارة"
+                    android:fontFamily="@font/arabtype"
+                    />
+                <item
+                    android:id="@+id/nav_borrowed"
+                    android:icon="@drawable/ic_borrow_requests"
+                    android:title="الكتب المعارة"
+                    android:fontFamily="@font/arabtype"
+                    />
+            </menu>
+        </item>
+        <item
+            android:id="@+id/Moderator"
+            android:title="المراقب"
+            android:fontFamily="@font/arabtype"
+            >
+            <menu>
+                <item
+                    android:id="@+id/nav_users_feedback"
+                    android:icon="@drawable/ic_feedback"
+                    android:title="التغذية الراجعة للمستخدمين"
+                    android:visible="false"
+                    android:fontFamily="@font/arabtype"
+                    />
+            </menu>
+        </item>
+    </group>
+
+    <item android:title="الإعدادات"
+        android:fontFamily="@font/arabtype"
+        >
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info"
+                android:title="عن التطبيق"
+                android:fontFamily="@font/arabtype"
+                />
+            <item
+                android:id="@+id/nav_add_feedback"
+                android:icon="@drawable/ic_feedback"
+                android:title="التغذية الراجعة"
+                android:fontFamily="@font/arabtype"
+                />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="مشاركة"
+                android:fontFamily="@font/arabtype"
+                />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_send"
+                android:title="تسجيل الخروج"
+                android:fontFamily="@font/arabtype"
+                />
+        </menu>
+    </item>
+
+</menu>

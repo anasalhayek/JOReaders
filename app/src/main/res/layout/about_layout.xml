@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp">
+    <TextView
+        style="@style/Header2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="من نحن"
+        />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:background="#c0c0c0" />
+    <TextView
+        style="@style/Header4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/about" />
+
+    <TextView
+        style="@style/Header4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="اذا كنت أمين مكتبة تواصل معنا لترقية حسابك"
+        />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:background="#c0c0c0" />
+    <TextView
+        style="@style/Header3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="بلغ عن مشكلة" />
+    <TextView
+            android:id="@+id/about_fdb"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="26sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="أضف تغذيتك الراجعة"
+            android:fontFamily="@font/arabtype"
+        />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:background="#c0c0c0" />
+
+    <TextView
+        style="@style/Header3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="دليل الإستخدام" />
+
+    <TextView
+        android:id="@+id/about_pp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="26sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="سياسة الخصوصية"
+        android:fontFamily="@font/arabtype"
+        />
+    <TextView
+        android:id="@+id/about_ts"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="26sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:fontFamily="@font/arabtype"
+        android:text="أحكام الاستخدام" />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:background="#c0c0c0" />
+    <TextView
+        style="@style/Header3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="تواصل معنا على" />
+
+    <TextView
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="joreaders@info.com" />
+    <TextView
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="00962791148512" />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="18dp"
+        android:background="#c0c0c0" />
+</LinearLayout>
+</ScrollView>

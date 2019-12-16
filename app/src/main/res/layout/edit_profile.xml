@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/change_profile_photo"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/ic_account"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#c0c0c0"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/change_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="إختيار صورة"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textAlignment="center"
+            android:textSize="26sp"
+            android:fontFamily="@font/arabtype"
+            />
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="تغيير الإسم"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:fontFamily="@font/arabtype"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:gravity="center"
+            boxBackgroundColor="#54000000"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/user_name_edit_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="الإسم الجديد"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="200dp"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="اضافة , تغيير الرقم الجامعي"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:fontFamily="@font/arabtype"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:gravity="center"
+            boxBackgroundColor="#54000000"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/unnum_edit_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="الرقم الجامعي الجديد"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="200dp"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="تغيير كلمة المرور"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:fontFamily="@font/arabtype"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:gravity="center"
+            boxBackgroundColor="#54000000"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pass_edit_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="كلمة المرور الجديدة"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:gravity="center"
+            boxBackgroundColor="#54000000"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirm_pass_edit_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="تأكيد كلمة المرور"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="200dp"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/save_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginEnd="75dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="حفظ"
+            android:textAppearance="@style/ButtTextAppearance"
+            android:background="@drawable/register_butt"
+            />
+    </LinearLayout>
+</ScrollView>

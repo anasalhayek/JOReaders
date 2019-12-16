@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    >
+    <TextView
+        style="@style/Header2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="قدم لنا رأيك" />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:background="#c0c0c0" />
+    <ProgressBar
+        android:id="@+id/add_fdb_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/fdb_text"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:hint="اكتب التغذية الراجعة"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/add_fdb_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:gravity="center"
+        android:text="إرسال"
+        android:padding="5dp"
+        android:textAppearance="@style/ButtTextAppearance"
+        android:background="@drawable/register_butt"
+        android:textAllCaps="true"
+        />
+
+    <TextView
+        style="@style/Header4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="نحن نرحب بإقتراحاتك , تجربتك , أفكارك\nالتغذية الراجعة من أفراد مجتمعنا\nتساعدنا على تطوير خواص , خدمات , تجربة التطبيق للجميع " />
+
+</LinearLayout>

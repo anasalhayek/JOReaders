@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/currently_reading"
+        android:title="أقرأ حالياً"
+        android:fontFamily="@font/arabtype"
+        />
+    <item
+        android:id="@+id/want_to_read"
+        android:title="أريد أن أقرأ"
+        android:fontFamily="@font/arabtype"
+        />
+    <item
+        android:id="@+id/done_reading"
+        android:title="أتممت القرائة"
+        android:fontFamily="@font/arabtype"
+        />
+</menu>

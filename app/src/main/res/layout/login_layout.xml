@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:gravity="center"
+    android:paddingTop="240dp"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <com.google.android.material.textfield.TextInputLayout
+        app:boxStrokeColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:gravity="center"
+        app:boxBackgroundColor="#54000000"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:shadowColor="@android:color/white"
+            android:textColorHighlight="@android:color/white"
+            android:textColorLink="@android:color/white"
+            android:id="@+id/user_email_login_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="البريد"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        app:passwordToggleEnabled="true"
+        app:boxBackgroundColor="#54000000"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_password_login_page"
+            android:textColorHint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:shadowColor="@android:color/white"
+            android:textColorHighlight="@android:color/white"
+            android:textColorLink="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="كلمة المرور"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:gravity="center"
+        android:text="تسجيل الدخول"
+        android:padding="5dp"
+        android:textAppearance="@style/ButtTextAppearance"
+        android:background="@drawable/register_butt"
+        />
+    <ProgressBar
+        android:id="@+id/login_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

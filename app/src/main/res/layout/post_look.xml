@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/post_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    app:cardElevation="2dp">
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/post_profile_photo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_account"
+            app:civ_border_color="#c0c0c0"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/user_name_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@id/post_profile_photo"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/date_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_name_post"
+            android:layout_marginStart="14dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toEndOf="@id/post_profile_photo"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date_post"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@id/post_profile_photo"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/post_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_more"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="gone"
+                    />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

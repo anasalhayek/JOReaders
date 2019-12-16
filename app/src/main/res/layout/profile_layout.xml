@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_photo"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_account"
+            app:civ_border_color="#c0c0c0"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/user_name_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Test Test"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/edit_profile_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="تعديل"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="28sp"
+            android:fontFamily="@font/arabtype"/>
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="#c0c0c0" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="الرفوف"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="32sp"
+            android:fontFamily="@font/arabtype"/>
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="#c0c0c0" />
+        <ProgressBar
+            android:id="@+id/shelves_pb"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="أقرأ حالياً"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:fontFamily="@font/arabtype"/>
+        <TextView
+            android:id="@+id/no_books_cr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="لا يوجد كتب في هذا الرف"
+            android:gravity="center"
+            android:visibility="gone"/>
+        <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/currently_reading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="أريد أن أقرأ"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:fontFamily="@font/arabtype"/>
+        <TextView
+            android:id="@+id/no_books_wr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="لا يوجد كتب في هذا الرف"
+            android:gravity="center"
+            android:visibility="gone"/>
+        <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/want_to_read_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="أتممت القرائة"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:fontFamily="@font/arabtype"/>
+        <TextView
+            android:id="@+id/no_books_dr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="لا يوجد كتب في هذا الرف"
+            android:gravity="center"
+            android:visibility="gone"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/done_reading_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+        <View
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="#c0c0c0" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="طلبات الاستعارة"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:fontFamily="@font/arabtype"/>
+        <TextView
+            android:id="@+id/no_books_br"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="لا يوجد كتب في هذا الرف"
+            android:gravity="center"
+            android:visibility="gone"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/borrowed_requests_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+        <View
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="#c0c0c0" />
+
+    </LinearLayout>
+</ScrollView>
