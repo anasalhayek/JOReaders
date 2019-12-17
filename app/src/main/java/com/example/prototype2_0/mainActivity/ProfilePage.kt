@@ -283,8 +283,8 @@ class ProfilePage : Fragment() {
                     }
                 } catch (e: Exception) {
                     Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
-                    shelves_pb.visibility = View.GONE
-                    no_books_dr.visibility = View.GONE
+                    shelves_pb?.visibility = View.GONE
+                    no_books_dr?.visibility = View.GONE
                 }
             },
             Response.ErrorListener {
