@@ -76,7 +76,7 @@
         android:id="@+id/add_book_status"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="حدد نسخ الكتاب"
+        android:hint="عدد نسخ الكتاب"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:inputType="number"

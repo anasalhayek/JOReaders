@@ -44,6 +44,7 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var book_image_book_look=view.book_image_book_look
     var book_name_book_look=view.book_name_book_look
     var book_date_book_look=view.book_date_book_look
+    var more_shelves_book=view.more_shelves_book
 
     //category
     var category_recycler_view = view.category_recycler_view

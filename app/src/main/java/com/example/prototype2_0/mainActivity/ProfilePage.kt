@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import com.example.prototype2_0.R
 import com.example.prototype2_0.Utitlities
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.app_bar_home.*
+import kotlinx.android.synthetic.main.book_look.*
 import kotlinx.android.synthetic.main.profile_layout.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -346,7 +348,7 @@ class ProfilePage : Fragment() {
                             borrowed_requests_view.layoutManager = LinearLayoutManager(context)
                             borrowed_requests_view.layoutManager =
                                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                            borrowed_requests_view.adapter = ShelvesAdapter(
+                            borrowed_requests_view.adapter = ShelvesBAdapter(
                                 activity!!,
                                 bookId,
                                 bookImage,
@@ -394,7 +396,7 @@ class ProfilePage : Fragment() {
 
 }
 
-class ShelvesAdapter(
+class ShelvesBAdapter(
     val context: Context,
     private val bookId: ArrayList<String>,
     private val bookImg: ArrayList<String>,
@@ -411,6 +413,66 @@ class ShelvesAdapter(
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
 
 
+        try {
+            if (borrowDate[p1] != "") {
+                p0.book_date_book_look.visibility = View.VISIBLE
+                p0.book_date_book_look.text = borrowDate[p1]
+            }
+        } catch (e: Exception) {
+//            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+        }
+        p0.book_name_book_look.text = bookName[p1]
+//        if(bookImg[p1]!=="null")
+        Picasso.get().load(utitlities.book_image_url + bookImg[p1]).into(p0.book_image_book_look)
+        p0.book_layout.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("bookId", bookId[p1])
+            bundle.putString("categoryId", book_category_id[p1])
+
+            val nextFragment = BookPage()
+            nextFragment.arguments = bundle
+
+            val fragmentManager = (context as AppCompatActivity).supportFragmentManager
+            fragmentManager.beginTransaction().replace(R.id.screen_area, nextFragment)
+                .addToBackStack("tag").commit()
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return bookId.size
+    }
+}
+
+
+class ShelvesAdapter(
+    val context: Context,
+    private val bookId: ArrayList<String>,
+    private val bookImg: ArrayList<String>,
+    private val bookName: ArrayList<String>,
+    private val borrowDate: ArrayList<String>,
+    private val book_category_id: ArrayList<String>
+
+) : RecyclerView.Adapter<ViewHolder>() {
+    val utitlities = Utitlities()
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.book_look, p0, false))
+    }
+
+    override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
+        p0.more_shelves_book.visibility=View.VISIBLE
+        p0.more_shelves_book.setOnClickListener {
+            val popupMenu = PopupMenu(context, p0.more_shelves_book)
+            popupMenu.menuInflater.inflate(R.menu.delete_from_shelve, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.delete_shelve_book ->{
+
+                    }
+                }
+                true
+            }
+            popupMenu.show()
+        }
         try {
             if (borrowDate[p1] != "") {
                 p0.book_date_book_look.visibility = View.VISIBLE
