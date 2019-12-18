@@ -25,6 +25,8 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.post_look.*
 import kotlinx.android.synthetic.main.society_layout.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
@@ -38,11 +40,12 @@ class PostsPage : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.society_layout, container, false)
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         swiperefresh.setOnRefreshListener {
             getPost()
-            swiperefresh.isRefreshing=false
+            swiperefresh.isRefreshing = false
         }
 
         getPost()
@@ -77,6 +80,10 @@ class PostsPage : Fragment() {
             fragmentManager.beginTransaction().replace(R.id.screen_area, AddPostPage())
                 .addToBackStack("tag")
                 .commit()
+        }
+
+        GlobalScope.launch {
+            deleteExpired()
         }
     }
 
@@ -162,6 +169,53 @@ class PostsPage : Fragment() {
         postRequest.setShouldCache(false)
         queue.add(postRequest)
     }
+
+    private fun deleteExpired() {
+        val url = "https://library123456.000webhostapp.com/DeleteExpired.php"
+        val queue = Volley.newRequestQueue(context)
+        val postRequest = object : StringRequest(
+            Method.POST, url, Response.Listener<String>
+            {
+                // Getting Response from Server
+                    response ->
+                try {
+                    val strResp = response.toString()
+                    val jsonObj = JSONObject(strResp)
+                    val jsonArray: JSONArray = jsonObj.getJSONArray("dishs")
+                    var status: Any = ""
+                    for (i in 0 until jsonArray.length()) {
+                        val jsonInner: JSONObject = jsonArray.getJSONObject(i)
+                        status = jsonInner.get("status")
+                    }
+                    if (status == "ok") {
+                    } else {
+                    }
+
+                } catch (e: Exception) {
+                    activity?.runOnUiThread() {
+                        Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+            },
+            Response.ErrorListener {
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                //Creating HashMap
+                val params = HashMap<String, String>()
+                return params
+            }
+        }
+
+        postRequest.retryPolicy =
+            DefaultRetryPolicy(
+                0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            )
+        queue.add(postRequest)
+        postRequest.setShouldCache(false)
+    }
 }
 
 class PostAdapter(
@@ -184,9 +238,9 @@ class PostAdapter(
         p0.user_name_post.text = user_name[p1]
         p0.date_post.text = post_date[p1]
         p0.text_post.text = post_text[p1]
-        if (user_image[p1]!="null")
-        Picasso.get().load("https://library123456.000webhostapp.com/images/${user_image[p1]}")
-            .into(p0.post_profile_photo)
+        if (user_image[p1] != "null")
+            Picasso.get().load("https://library123456.000webhostapp.com/images/${user_image[p1]}")
+                .into(p0.post_profile_photo)
 
         p0.post_more.setOnClickListener {
             val popupMenu = PopupMenu(context, p0.post_more)
@@ -246,16 +300,18 @@ class PostAdapter(
                 .addToBackStack("tag").commit()
         }
 
-        val sharedPreference = context.getSharedPreferences("myPrefs",Context.MODE_PRIVATE)
-        val user_role=sharedPreference.getString("user_role","")
-        if (user_role=="2"){
-            p0.post_more.visibility=View.VISIBLE
+        val sharedPreference = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val user_role = sharedPreference.getString("user_role", "")
+        if (user_role == "2") {
+            p0.post_more.visibility = View.VISIBLE
         }
     }
+
     override fun getItemCount(): Int {
         return post_id.size
     }
-    private fun DeletePost(post_id: String,post_card_view:CardView) {
+
+    private fun DeletePost(post_id: String, post_card_view: CardView) {
 
         val url = "https://library123456.000webhostapp.com/DeletePost.php"
         val queue = Volley.newRequestQueue(context)
@@ -294,7 +350,7 @@ class PostAdapter(
             override fun getParams(): Map<String, String> {
                 //Creating HashMap
                 val params = HashMap<String, String>()
-                params["post_id"] =post_id
+                params["post_id"] = post_id
                 return params
             }
         }
@@ -307,5 +363,4 @@ class PostAdapter(
         queue.add(postRequest)
         postRequest.setShouldCache(false)
     }
-
 }
