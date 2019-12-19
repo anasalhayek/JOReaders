@@ -40,12 +40,26 @@ class LoginPage : Fragment() {
             login_pb.visibility = View.VISIBLE
             user_password_login_page.hideKeyboard()
             user_email_login_page.hideKeyboard()
-            loginRequest()
+            checkinfo()
         }
         fb_login_button.setOnClickListener {
             login_pb.visibility = View.VISIBLE
         }
     }
+
+    private fun checkinfo(){
+        if (user_email_login_page.text.toString().trim().isNotEmpty()){
+            if (user_password_login_page.text.toString().trim().isNotEmpty())
+            {                loginRequest()            }
+            else{user_password_login_page.error="كلمة المرور مطلوبة"
+                    login_pb.visibility = View.GONE
+                    user_password_login_page.hideKeyboard() }
+        }
+        else {user_email_login_page.error="البريد مطلوب"
+                login_pb.visibility = View.GONE
+                user_email_login_page.hideKeyboard() }
+    }
+
     private fun loginRequest() {
 
         val url = "https://library123456.000webhostapp.com/LoginPage.php"
@@ -138,6 +152,7 @@ class LoginPage : Fragment() {
             )
         queue.add(postRequest)
     }
+
     fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)

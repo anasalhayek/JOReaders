@@ -127,7 +127,7 @@ class AddPostPage : Fragment() {
                 queue.add(postRequest)
             }
 
-            fun View.hideKeyboard() {
+    fun View.hideKeyboard() {
                 val imm =
                     context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(windowToken, 0)

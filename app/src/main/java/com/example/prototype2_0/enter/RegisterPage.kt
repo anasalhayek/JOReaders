@@ -1,6 +1,7 @@
 package com.example.prototype2_0.enter
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -12,6 +13,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.android.volley.DefaultRetryPolicy
@@ -44,26 +46,26 @@ class RegisterPage :Fragment() {
     }
 
     private fun checkinfo(){
-    if (user_name_register_page.text.toString().trim().isNotEmpty()){
-        if (isValidEmail(user_email_register_page.text.toString())){
-            if(user_password_register_page.text.toString().length>6 ){
-                 if(confirm_user_password_register_page.text.toString() == user_password_register_page.text.toString()){
-                    registerRequest()
+        if (user_name_register_page.text.toString().trim().isNotEmpty()){
+            if (isValidEmail(user_email_register_page.text.toString())){
+                if(user_password_register_page.text.toString().length>6 ){
+                     if(confirm_user_password_register_page.text.toString() == user_password_register_page.text.toString()){
+                        registerRequest()
+                    }
+                    else{confirm_user_password_register_page.error="كلمة المرور غير متطابقة"
+                         reg_pb.visibility = View.GONE
+                     }
                 }
-                else{confirm_user_password_register_page.error="كلمة المرور غير متطابقة"
-                     reg_pb.visibility = View.GONE
-                 }
+                else{user_password_register_page.error="كلمة المرور قصيرة"
+                    reg_pb.visibility = View.GONE }
+                }
+            else{        user_email_register_page.error="البريد مطلوب"
+                reg_pb.visibility = View.GONE
             }
-            else{user_password_register_page.error="كلمة المرور قصيرة"
-                reg_pb.visibility = View.GONE }
-            }
-        else{        user_email_register_page.error="البريد مطلوب"
+        }
+        else {        user_name_register_page.error="الإسم مطلوب"
             reg_pb.visibility = View.GONE
         }
-    }
-    else {        user_name_register_page.error="الإسم مطلوب"
-        reg_pb.visibility = View.GONE
-    }
     }
 
     private fun isValidEmail(email: String): Boolean {
@@ -138,4 +140,11 @@ class RegisterPage :Fragment() {
         user_password_register_page?.text?.clear()
         confirm_user_password_register_page?.text?.clear()
     }
+
+    fun View.hideKeyboard() {
+        val imm =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+
 }

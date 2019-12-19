@@ -1,6 +1,7 @@
 package com.example.prototype2_0.mainActivity
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -41,8 +43,7 @@ class AddBook : Fragment() {
         super.onActivityCreated(savedInstanceState)
         activity!!.home_page_search_bar.visibility = View.GONE
         val catStrings = arrayOf("التاريخ", "الأدب", "علوم الحاسوب", "الأبحاث العلمية")
-        add_category.adapter =
-            ArrayAdapter(activity!!, android.R.layout.simple_spinner_dropdown_item, catStrings)
+        add_category.adapter =ArrayAdapter(activity!!, android.R.layout.simple_spinner_dropdown_item, catStrings)
         add_category.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //To change body of created functions use File | Settings | File Templates.
@@ -71,8 +72,7 @@ class AddBook : Fragment() {
             "مكتبة الجامعة الأردنية",
             "مكتبة الجامعة اليرموك"
         )
-        add_library.adapter =
-            ArrayAdapter(activity!!, android.R.layout.simple_spinner_dropdown_item, libStrings)
+        add_library.adapter =ArrayAdapter(activity!!, android.R.layout.simple_spinner_dropdown_item, libStrings)
         add_library.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //To change body of created functions use File | Settings | File Templates.
@@ -99,8 +99,43 @@ class AddBook : Fragment() {
 
         add_book_btn.setOnClickListener {
             add_book_pb.visibility = View.VISIBLE
-            addBook()
+            checkinfo()
         }
+    }
+
+    private fun checkinfo(){
+        if (add_book_name.text.toString().trim().isNotEmpty()){
+            if (add_book_author.text.toString().trim().isNotEmpty()){
+                if(add_book_desc.text.toString().trim().isNotEmpty() ){
+                    if(add_book_status.text.toString().trim().isNotEmpty()){
+                        if(encodImgb.isNotEmpty()){
+                            addBook()
+                        }
+                        else{ Snackbar.make(view!!, "صورة الكتاب مطلوبة", Snackbar.LENGTH_LONG)
+                                .setAction("UNDO", null).show()
+                                add_book_pb.visibility = View.GONE }
+                    }
+                    else{add_book_status.error="عدد نسخ الكتاب مطلوبة"
+                            add_book_pb.visibility = View.GONE
+                            add_book_status.hideKeyboard()}
+                }
+                else{add_book_desc.error="الوصف مطلوب"
+                        add_book_pb.visibility = View.GONE
+                        add_book_desc.hideKeyboard()}
+            }
+            else{add_book_author.error="اسم المؤلف مطلوب"
+                    add_book_pb.visibility = View.GONE
+                    add_book_author.hideKeyboard()}
+        }
+        else {add_book_name.error="الإسم مطلوب"
+                add_book_pb.visibility = View.GONE
+                add_book_name.hideKeyboard()}
+    }
+
+    fun View.hideKeyboard() {
+        val imm =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
     }
 
     private fun startGallery() {
@@ -154,8 +189,7 @@ class AddBook : Fragment() {
                         status = jsonInner.get("status")
                     }
                     if (status == "ok") {
-                        Snackbar.make(view!!, "تم", Snackbar.LENGTH_LONG).setAction("UNDO", null)
-                            .show()
+                        Snackbar.make(view!!, "تم", Snackbar.LENGTH_LONG).setAction("UNDO", null).show()
                         remove()
                         add_book_pb.visibility = View.GONE
                     } else {
@@ -204,5 +238,6 @@ class AddBook : Fragment() {
         add_book_name?.text?.clear()
         add_book_author?.text?.clear()
         add_book_desc?.text?.clear()
+        add_book_status?.text?.clear()
     }
 }
