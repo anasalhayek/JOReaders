@@ -3,7 +3,7 @@
     >
     <item
         android:id="@+id/delete_shelve_book"
-        android:title="حذف الكتاب من الرف"
+        android:title="إزالة الكتاب من الرف"
         android:fontFamily="@font/arabtype"
         />
 </menu>

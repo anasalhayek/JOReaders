@@ -99,7 +99,7 @@ class ProfilePageVisit : Fragment() {
                             currently_reading_view.layoutManager =
                                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                             currently_reading_view.adapter =
-                                ShelvesAdapter(activity!!, bookId, bookImage, bookName,empty,book_category_id)
+                                ShelvesAdapter(activity!!, bookId, bookImage, bookName,empty,book_category_id,"")
                             shelves_pb.visibility=View.GONE
                             no_books_cr.visibility=View.GONE
                         } catch (e: Exception) {
@@ -171,7 +171,7 @@ class ProfilePageVisit : Fragment() {
                             want_to_read_view.layoutManager =
                                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                             want_to_read_view.adapter =
-                                ShelvesAdapter(activity!!, bookId, bookImage, bookName,empty,book_category_id)
+                                ShelvesAdapter(activity!!, bookId, bookImage, bookName,empty,book_category_id,"")
                             shelves_pb.visibility=View.GONE
                             no_books_wr.visibility=View.GONE
                         } catch (e: Exception) {
@@ -244,7 +244,7 @@ class ProfilePageVisit : Fragment() {
                             done_reading_view.layoutManager =
                                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                             done_reading_view.adapter =
-                                ShelvesAdapter(activity!!, bookId, bookImage, bookName,empty,book_category_id)
+                                ShelvesAdapter(activity!!, bookId, bookImage, bookName,empty,book_category_id,"")
                             shelves_pb.visibility=View.GONE
                             no_books_dr.visibility=View.GONE
                         } catch (e: Exception) {

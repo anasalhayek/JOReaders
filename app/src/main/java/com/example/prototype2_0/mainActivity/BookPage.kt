@@ -562,9 +562,9 @@ class BookPage : Fragment() {
                         status = jsonInner.get("status")
                     }
                     if (status == "ok") {
-                        Toast.makeText(activity, "Added", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, "تم", Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(activity, "Already added", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "الكتاب موجود في هذا الرف مسبقاً", Toast.LENGTH_LONG).show()
                     }
                 } catch (e: Exception) {
                     Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
@@ -612,9 +612,9 @@ class BookPage : Fragment() {
                         status = jsonInner.get("status")
                     }
                     if (status == "ok") {
-                        Toast.makeText(activity, "Added", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, "تم", Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(activity, "Already added", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "الكتاب موجود في هذا الرف مسبقاً", Toast.LENGTH_LONG).show()
                     }
                 } catch (e: Exception) {
                     Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
@@ -662,9 +662,9 @@ class BookPage : Fragment() {
                         status = jsonInner.get("status")
                     }
                     if (status == "ok") {
-                        Toast.makeText(activity, "Added", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, "تم", Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(activity, "Already added", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "الكتاب موجود في هذا الرف مسبقاً", Toast.LENGTH_LONG).show()
                     }
                 } catch (e: Exception) {
                     Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()

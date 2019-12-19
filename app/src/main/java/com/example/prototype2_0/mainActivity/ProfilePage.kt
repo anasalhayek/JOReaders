@@ -9,6 +9,8 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -61,6 +63,14 @@ class ProfilePage : Fragment() {
         getWantToRead()
         getDoneReading()
         getBorrowedRequests()
+
+        profile_scroll.setOnRefreshListener {
+            getCurrentlyReading()
+            getWantToRead()
+            getDoneReading()
+            profile_scroll.isRefreshing=false
+        }
+
     }
 
     private fun getCurrentlyReading() {
@@ -105,7 +115,8 @@ class ProfilePage : Fragment() {
                                     bookImage,
                                     bookName,
                                     empty,
-                                    book_category_id
+                                    book_category_id,
+                                    "cr"
                                 )
                             shelves_pb.visibility = View.GONE
                             no_books_cr.visibility = View.GONE
@@ -188,7 +199,8 @@ class ProfilePage : Fragment() {
                                     bookImage,
                                     bookName,
                                     empty,
-                                    book_category_id
+                                    book_category_id,
+                                    "wr"
                                 )
                             shelves_pb.visibility = View.GONE
                             no_books_wr.visibility = View.GONE
@@ -271,7 +283,8 @@ class ProfilePage : Fragment() {
                                     bookImage,
                                     bookName,
                                     empty,
-                                    book_category_id
+                                    book_category_id,
+                                    "dr"
                                 )
                             shelves_pb.visibility = View.GONE
                             no_books_dr.visibility = View.GONE
@@ -450,7 +463,8 @@ class ShelvesAdapter(
     private val bookImg: ArrayList<String>,
     private val bookName: ArrayList<String>,
     private val borrowDate: ArrayList<String>,
-    private val book_category_id: ArrayList<String>
+    private val book_category_id: ArrayList<String>,
+    private val table: String
 
 ) : RecyclerView.Adapter<ViewHolder>() {
     val utitlities = Utitlities()
@@ -459,6 +473,9 @@ class ShelvesAdapter(
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
+        val sharedPreference = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val user_id = sharedPreference.getString("user_id", "")
+
         p0.more_shelves_book.visibility=View.VISIBLE
         p0.more_shelves_book.setOnClickListener {
             val popupMenu = PopupMenu(context, p0.more_shelves_book)
@@ -466,7 +483,12 @@ class ShelvesAdapter(
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.delete_shelve_book ->{
-
+                        if (table=="cr")
+                            deleteCR(bookId[p1],user_id.toString(),p0.book_layout)
+                        else if(table=="wr")
+                            deleteWR(bookId[p1],user_id.toString(),p0.book_layout)
+                        else if (table=="dr")
+                            deleteDR(bookId[p1],user_id.toString(),p0.book_layout)
                     }
                 }
                 true
@@ -501,4 +523,162 @@ class ShelvesAdapter(
     override fun getItemCount(): Int {
         return bookId.size
     }
+
+    private fun deleteCR(book_id: String, user_id: String,book_layout: CoordinatorLayout) {
+        val url = "https://library123456.000webhostapp.com/DeleteFromCR.php"
+        val queue = Volley.newRequestQueue(context)
+        val postRequest = object : StringRequest(
+            Method.POST, url, Response.Listener<String>
+            {
+                // Getting Response from Server
+                    response ->
+                try {
+                    val strResp = response.toString()
+                    val jsonObj = JSONObject(strResp)
+                    val jsonArray: JSONArray = jsonObj.getJSONArray("dishs")
+                    var status: Any = ""
+                    for (i in 0 until jsonArray.length()) {
+                        val jsonInner: JSONObject = jsonArray.getJSONObject(i)
+                        status = jsonInner.get("status")
+                    }
+                    if (status == "ok") {
+                        Toast.makeText(context, "تم الحذف", Toast.LENGTH_LONG).show()
+                        book_layout.visibility = View.GONE
+                    } else {
+                        Toast.makeText(context, "لم يتم الحذف !", Toast.LENGTH_LONG).show()
+//                        posts.posts_pb.visibility = View.GONE
+                    }
+
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+//                    posts.posts_pb.visibility = View.GONE
+                }
+            },
+            Response.ErrorListener {
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+//                posts.posts_pb.visibility = View.GONE
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                //Creating HashMap
+                val params = HashMap<String, String>()
+                params["book_id"] = book_id
+                params["user_id"] = user_id
+                return params
+            }
+        }
+        postRequest.retryPolicy =
+            DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            )
+        queue.add(postRequest)
+        postRequest.setShouldCache(false)
+    }
+    private fun deleteWR(book_id: String, user_id: String,book_layout: CoordinatorLayout) {
+        val url = "https://library123456.000webhostapp.com/DeleteFromWR.php"
+        val queue = Volley.newRequestQueue(context)
+        val postRequest = object : StringRequest(
+            Method.POST, url, Response.Listener<String>
+            {
+                // Getting Response from Server
+                    response ->
+                try {
+                    val strResp = response.toString()
+                    val jsonObj = JSONObject(strResp)
+                    val jsonArray: JSONArray = jsonObj.getJSONArray("dishs")
+                    var status: Any = ""
+                    for (i in 0 until jsonArray.length()) {
+                        val jsonInner: JSONObject = jsonArray.getJSONObject(i)
+                        status = jsonInner.get("status")
+                    }
+                    if (status == "ok") {
+                        Toast.makeText(context, "تم الحذف", Toast.LENGTH_LONG).show()
+                        book_layout.visibility = View.GONE
+                    } else {
+                        Toast.makeText(context, "لم يتم الحذف !", Toast.LENGTH_LONG).show()
+//                        posts.posts_pb.visibility = View.GONE
+                    }
+
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+//                    posts.posts_pb.visibility = View.GONE
+                }
+            },
+            Response.ErrorListener {
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+//                posts.posts_pb.visibility = View.GONE
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                //Creating HashMap
+                val params = HashMap<String, String>()
+                params["book_id"] = book_id
+                params["user_id"] = user_id
+                return params
+            }
+        }
+        postRequest.retryPolicy =
+            DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            )
+        queue.add(postRequest)
+        postRequest.setShouldCache(false)
+    }
+    private fun deleteDR(book_id: String, user_id: String,book_layout: CoordinatorLayout) {
+        val url = "https://library123456.000webhostapp.com/DeleteFromDR.php"
+        val queue = Volley.newRequestQueue(context)
+        val postRequest = object : StringRequest(
+            Method.POST, url, Response.Listener<String>
+            {
+                // Getting Response from Server
+                    response ->
+                try {
+                    val strResp = response.toString()
+                    val jsonObj = JSONObject(strResp)
+                    val jsonArray: JSONArray = jsonObj.getJSONArray("dishs")
+                    var status: Any = ""
+                    for (i in 0 until jsonArray.length()) {
+                        val jsonInner: JSONObject = jsonArray.getJSONObject(i)
+                        status = jsonInner.get("status")
+                    }
+                    if (status == "ok") {
+                        Toast.makeText(context, "تم الحذف", Toast.LENGTH_LONG).show()
+                        book_layout.visibility = View.GONE
+                    } else {
+                        Toast.makeText(context, "لم يتم الحذف !", Toast.LENGTH_LONG).show()
+//                        posts.posts_pb.visibility = View.GONE
+                    }
+
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+//                    posts.posts_pb.visibility = View.GONE
+                }
+            },
+            Response.ErrorListener {
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+//                posts.posts_pb.visibility = View.GONE
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                //Creating HashMap
+                val params = HashMap<String, String>()
+                params["book_id"] = book_id
+                params["user_id"] = user_id
+                return params
+            }
+        }
+        postRequest.retryPolicy =
+            DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            )
+        queue.add(postRequest)
+        postRequest.setShouldCache(false)
+    }
+
 }
