@@ -6,25 +6,24 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
-import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.prototype2_0.data.DatasourceHelper
 import com.example.prototype2_0.mainActivity.*
 import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.post_look.*
 
 @Suppress("NAME_SHADOWING")
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var datasourceHelper: DatasourceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_NoActionBar)
@@ -59,12 +58,14 @@ class HomeActivity : AppCompatActivity() {
         val userImage: CircleImageView = headerView.findViewById(R.id.profile_photo_nav)
 //        Toast.makeText(this, user_image, Toast.LENGTH_LONG).show()
 
-        userName.text = user_name
-        userEmail.text = user_email
-        userUn.text = user_un
 
-        if (user_image!="null")
-            Picasso.get().load("https://library123456.000webhostapp.com/images/$user_image").into(userImage)
+        datasourceHelper = DatasourceHelper(this)
+        datasourceHelper.getUserInfo(userName, userUn, userEmail, userImage)
+
+//        if (user_image != "null")
+//            Picasso.get().load("https://library123456.000webhostapp.com/images/$user_image").into(
+//                userImage
+//            )
         headerView.setOnClickListener {
             fragmentManager.beginTransaction().replace(R.id.screen_area, ProfilePage())
                 .addToBackStack("tag")
@@ -220,6 +221,8 @@ class HomeActivity : AppCompatActivity() {
 //        val navController = findNavController(R.id.nav_host_fragment)
 //        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 //    }
+
+
 }
 
 //onBoarding

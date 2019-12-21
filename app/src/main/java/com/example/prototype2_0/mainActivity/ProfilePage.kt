@@ -52,10 +52,10 @@ class ProfilePage : Fragment() {
 
         val sharedPreference = activity!!.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val user_name = sharedPreference.getString("user_name", "")
-        val user_image = sharedPreference.getString("user_image", "")
+        val picasso = sharedPreference.getString("picasso", null)
 
-        if (user_image!="null")
-            Picasso.get().load("https://library123456.000webhostapp.com/images/$user_image").into(profile_photo)
+        if (picasso != null)
+            Picasso.get().load(picasso).into(profile_photo)
         val userName: TextView = user_name_profile.findViewById(R.id.user_name_profile)
         userName.text = user_name
 
@@ -68,7 +68,7 @@ class ProfilePage : Fragment() {
             getCurrentlyReading()
             getWantToRead()
             getDoneReading()
-            profile_scroll.isRefreshing=false
+            profile_scroll.isRefreshing = false
         }
 
     }
@@ -476,19 +476,19 @@ class ShelvesAdapter(
         val sharedPreference = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val user_id = sharedPreference.getString("user_id", "")
 
-        p0.more_shelves_book.visibility=View.VISIBLE
+        p0.more_shelves_book.visibility = View.VISIBLE
         p0.more_shelves_book.setOnClickListener {
             val popupMenu = PopupMenu(context, p0.more_shelves_book)
             popupMenu.menuInflater.inflate(R.menu.delete_from_shelve, popupMenu.menu)
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
-                    R.id.delete_shelve_book ->{
-                        if (table=="cr")
-                            deleteCR(bookId[p1],user_id.toString(),p0.book_layout)
-                        else if(table=="wr")
-                            deleteWR(bookId[p1],user_id.toString(),p0.book_layout)
-                        else if (table=="dr")
-                            deleteDR(bookId[p1],user_id.toString(),p0.book_layout)
+                    R.id.delete_shelve_book -> {
+                        if (table == "cr")
+                            deleteCR(bookId[p1], user_id.toString(), p0.book_layout)
+                        else if (table == "wr")
+                            deleteWR(bookId[p1], user_id.toString(), p0.book_layout)
+                        else if (table == "dr")
+                            deleteDR(bookId[p1], user_id.toString(), p0.book_layout)
                     }
                 }
                 true
@@ -524,7 +524,7 @@ class ShelvesAdapter(
         return bookId.size
     }
 
-    private fun deleteCR(book_id: String, user_id: String,book_layout: CoordinatorLayout) {
+    private fun deleteCR(book_id: String, user_id: String, book_layout: CoordinatorLayout) {
         val url = "https://library123456.000webhostapp.com/DeleteFromCR.php"
         val queue = Volley.newRequestQueue(context)
         val postRequest = object : StringRequest(
@@ -576,7 +576,8 @@ class ShelvesAdapter(
         queue.add(postRequest)
         postRequest.setShouldCache(false)
     }
-    private fun deleteWR(book_id: String, user_id: String,book_layout: CoordinatorLayout) {
+
+    private fun deleteWR(book_id: String, user_id: String, book_layout: CoordinatorLayout) {
         val url = "https://library123456.000webhostapp.com/DeleteFromWR.php"
         val queue = Volley.newRequestQueue(context)
         val postRequest = object : StringRequest(
@@ -628,7 +629,8 @@ class ShelvesAdapter(
         queue.add(postRequest)
         postRequest.setShouldCache(false)
     }
-    private fun deleteDR(book_id: String, user_id: String,book_layout: CoordinatorLayout) {
+
+    private fun deleteDR(book_id: String, user_id: String, book_layout: CoordinatorLayout) {
         val url = "https://library123456.000webhostapp.com/DeleteFromDR.php"
         val queue = Volley.newRequestQueue(context)
         val postRequest = object : StringRequest(

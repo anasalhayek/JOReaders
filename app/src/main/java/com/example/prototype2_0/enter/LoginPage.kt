@@ -14,14 +14,9 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.prototype2_0.HomeActivity
-import com.example.prototype2_0.MainActivity
-import com.facebook.*
-import com.facebook.login.LoginResult
 import kotlinx.android.synthetic.main.login_layout.*
 import org.json.JSONArray
 import org.json.JSONObject
-import java.util.*
-import kotlin.collections.HashMap
 
 
 class LoginPage : Fragment() {
@@ -47,17 +42,20 @@ class LoginPage : Fragment() {
         }
     }
 
-    private fun checkinfo(){
-        if (user_email_login_page.text.toString().trim().isNotEmpty()){
-            if (user_password_login_page.text.toString().trim().isNotEmpty())
-            {                loginRequest()            }
-            else{user_password_login_page.error="كلمة المرور مطلوبة"
-                    login_pb.visibility = View.GONE
-                    user_password_login_page.hideKeyboard() }
-        }
-        else {user_email_login_page.error="البريد مطلوب"
+    private fun checkinfo() {
+        if (user_email_login_page.text.toString().trim().isNotEmpty()) {
+            if (user_password_login_page.text.toString().trim().isNotEmpty()) {
+                loginRequest()
+            } else {
+                user_password_login_page.error = "كلمة المرور مطلوبة"
                 login_pb.visibility = View.GONE
-                user_email_login_page.hideKeyboard() }
+                user_password_login_page.hideKeyboard()
+            }
+        } else {
+            user_email_login_page.error = "البريد مطلوب"
+            login_pb.visibility = View.GONE
+            user_email_login_page.hideKeyboard()
+        }
     }
 
     private fun loginRequest() {
@@ -109,7 +107,10 @@ class LoginPage : Fragment() {
                         editor.putString("user_image", user_image)
                         editor.putString("user_un", user_un)
                         editor.putString("user_role", user_role)
-                        editor.clear()
+                        editor.putString(
+                            "picasso",
+                            "https://library123456.000webhostapp.com/images/${user_image}"
+                        )
                         editor.apply()
 
                         val intent = Intent(activity, HomeActivity::class.java)
